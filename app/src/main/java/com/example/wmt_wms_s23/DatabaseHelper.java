@@ -24,6 +24,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // Create tables in the database
         db.execSQL(SalespersonContract.SQL_CREATE_ENTRIES);
         db.execSQL(SalesRecordContract.SQL_CREATE_ENTRIES);
+
+        // Insert a fixed user into the User table
+        ContentValues userValues = new ContentValues();
+        userValues.put(SalespersonContract.SalespersonEntry.COLUMN_NAME_USERNAME, "test");
+        userValues.put(SalespersonContract.SalespersonEntry.COLUMN_NAME_PASSWORD, "test");
+        long newRowId = db.insert(SalespersonContract.SalespersonEntry.TABLE_NAME, null, userValues);
     }
 
     @Override
